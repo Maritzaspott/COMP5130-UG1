@@ -25,7 +25,7 @@ def calculate_confidence(list1: list, list2: list) -> float:
     """
     :param list1: the first partitioned list of length one or more
     :param list2: the second partitioned list of length one or more
-    :return: a float value, the confidence of list1 -> list2
+    :return: the confidence of list1 -> list2 as a percentage
     """
 
     # confidence = P(list2|list1) = P(list1 and list2) / P(list1)
