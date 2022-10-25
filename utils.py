@@ -6,7 +6,13 @@
 # piper
 # L1 = {frequent items}
 # return list of individual items
-
+def create_first_set (dataset):
+    first_set = set()
+    for itemset in dataset:
+        for item in itemset:
+            if item not in first_set:
+                first_set.add(item)
+    return [{item} for item in list(first_set)]
 
 # calculate subset frequency from all itemsets
 # piper
