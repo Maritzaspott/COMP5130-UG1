@@ -6,6 +6,18 @@
 # piper
 # L1 = {frequent items}
 # return list of individual items
+import csv
+
+def create_dataset(file_path):
+    dataset = []
+    with open(file_path, newline = '') as custfile:
+        rows = csv.reader(custfile)
+        for rows in rows:
+            items = row[0].split(',')
+            dataset.append(set(items))
+    return dataset
+
+
 def create_first_set (dataset):
     first_set = set()
     for itemset in dataset:
@@ -20,6 +32,12 @@ def create_first_set (dataset):
 #       increment the count of all candidates in C(k+1) that are contained in t
 # return list of itemsets
 
+def calc_set_frequency (dataset, itemsets):
+    frequency = []
+    for index, itemset in enumerate(itemsets):
+        if itemset.difference(subset) == set()
+            frequency[index] += 1
+    return frequency
 
 # prune
 # zelda
