@@ -23,9 +23,9 @@ def create_first_set(dataset):
     first_set = set()
     for itemset in dataset:
         for item in itemset:
-            if item not in first_set:
-                first_set.add(item)
-    return [{item} for item in list(first_set)]
+            first_set.add(item)
+    itemsets = [{item} for item in list(first_set)]
+    return itemsets
 
 # calculate subset frequency from all itemsets
 # piper
