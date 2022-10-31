@@ -35,7 +35,7 @@ def create_first_set (dataset):
 def calc_set_frequency (dataset, itemsets):
     frequency = []
     for index, itemset in enumerate(itemsets):
-        if itemset.difference(subset) == set()
+        if itemset.difference(subset) == set():
             frequency[index] += 1
     return frequency
 
