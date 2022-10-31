@@ -8,17 +8,18 @@
 # return list of individual items
 import csv
 
+
 def create_dataset(file_path):
     dataset = []
-    with open(file_path, newline = '') as custfile:
+    with open(file_path, newline='') as custfile:
         rows = csv.reader(custfile)
-        for rows in rows:
+        for row in rows:
             items = row[0].split(',')
             dataset.append(set(items))
     return dataset
 
 
-def create_first_set (dataset):
+def create_first_set(dataset):
     first_set = set()
     for itemset in dataset:
         for item in itemset:
@@ -32,11 +33,16 @@ def create_first_set (dataset):
 #       increment the count of all candidates in C(k+1) that are contained in t
 # return list of itemsets
 
-def calc_set_frequency (dataset, itemsets):
+
+def calc_set_frequency(dataset, itemsets):
     frequency = []
     for index, itemset in enumerate(itemsets):
-        if itemset.difference(subset) == set():
-            frequency[index] += 1
+        frequency.append(0)
+
+    for subset in dataset:
+        for index, itemset in enumerate(itemsets):
+            if itemset.difference(subset) == set():
+                frequency[index] += 1
     return frequency
 
 # prune
