@@ -2,7 +2,7 @@
 # return ones with confidence level above the one inputted by user
 # maritza
 from more_itertools import set_partitions
-from utils import calculate_subset_frequency #or whatever it ends up being called
+from utils import calc_set_frequency(dataset, itemsets)
 
 
 def find_strong_association_rules(frequent_itemset: list, confidence_level: float) -> dict:
