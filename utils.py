@@ -19,6 +19,12 @@ def create_dataset(file_path):
     return dataset
 
 
+"""
+    :param file_path: a full file directory path to the imported data file used to run the algorithm
+    :return: a dataset of items in a comma separated list 
+"""
+
+
 def create_first_set(dataset):
     first_set = set()
     for itemset in dataset:
@@ -26,6 +32,12 @@ def create_first_set(dataset):
             first_set.add(item)
     itemsets = [{item} for item in list(first_set)]
     return itemsets
+
+
+"""
+    :param dataset: a dataset of items in a comma separated list 
+    :return: the first list of unique items in itemsets to evaluate
+"""
 
 # calculate subset frequency from all itemsets
 # piper
@@ -44,6 +56,12 @@ def calc_set_frequency(dataset, itemsets):
             if itemset.difference(subset) == set():
                 frequency[index] += 1
     return frequency
+
+"""
+    :param dataset: a dataset of items in a comma separated list 
+    :param itemsets: a list of unique items in itemsets to evaluate
+    :return: the number of times an itemset appears in an indexed list
+"""
 
 # prune
 # zelda
