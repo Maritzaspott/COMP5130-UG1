@@ -8,8 +8,11 @@
 # return list of individual items
 import csv
 
-
 def create_dataset(file_path):
+    """
+        :param file_path: a full file directory path to the imported data file used to run the algorithm
+        :return: a dataset of items in a comma separated list
+    """
     dataset = []
     with open(file_path, newline='') as custfile:
         rows = csv.reader(custfile)
@@ -18,14 +21,11 @@ def create_dataset(file_path):
             dataset.append(set(items))
     return dataset
 
-
-"""
-    :param file_path: a full file directory path to the imported data file used to run the algorithm
-    :return: a dataset of items in a comma separated list 
-"""
-
-
 def create_first_set(dataset):
+    """
+        :param dataset: a dataset of items in a comma separated list
+        :return: the first list of unique items in itemsets to evaluate
+    """
     first_set = set()
     for itemset in dataset:
         for item in itemset:
@@ -33,20 +33,18 @@ def create_first_set(dataset):
     itemsets = [{item} for item in list(first_set)]
     return itemsets
 
-
-"""
-    :param dataset: a dataset of items in a comma separated list 
-    :return: the first list of unique items in itemsets to evaluate
-"""
-
 # calculate subset frequency from all itemsets
 # piper
 # for each transaction t in database do:
 #       increment the count of all candidates in C(k+1) that are contained in t
 # return list of itemsets
 
-
 def calc_set_frequency(dataset, itemsets):
+    """
+        :param dataset: a dataset of items in a comma separated list
+        :param itemsets: a list of unique items in itemsets to evaluate
+        :return: the number of times an itemset appears in an indexed list
+    """
     frequency = []
     for index, itemset in enumerate(itemsets):
         frequency.append(0)
@@ -56,12 +54,6 @@ def calc_set_frequency(dataset, itemsets):
             if itemset.difference(subset) == set():
                 frequency[index] += 1
     return frequency
-
-"""
-    :param dataset: a dataset of items in a comma separated list 
-    :param itemsets: a list of unique items in itemsets to evaluate
-    :return: the number of times an itemset appears in an indexed list
-"""
 
 # prune
 # zelda
