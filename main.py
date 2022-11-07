@@ -11,7 +11,7 @@ def main():
     first_set = create_first_set(dataset)
     min_support = int(input("Please specify a minimum support: "))
     results = apriori(dataset, first_set, min_support)
-    print("The most frequent itemset is {}".format(results))
+    print("The most frequent itemset is {}".format(results[-1]))
     #confidence_level = input("Please specify a confidence level: ")
     #print("The most frequent itemset contains the following strong associations{}".format(confidence_level))
 
