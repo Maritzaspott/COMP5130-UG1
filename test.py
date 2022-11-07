@@ -4,10 +4,12 @@ def create_dataset(file_path):
         :return: a dataset of items in a comma separated list
     """
     dataset = []
-    with open(file_path, newline='') as custfile:
+    with open(file_path) as custfile:
         rows = csv.reader(custfile)
         for row in rows:
             items = row[0].split(',')
             dataset.append(set(items))
     return dataset
 
+dataset = create_dataset(input("Please enter the data path: "))
+print(dataset)
