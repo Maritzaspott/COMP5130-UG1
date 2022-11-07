@@ -3,15 +3,15 @@
 # calls individual functions to create algorithm
 # returns frequent itemset(s)
 from utils import *
-def apriori(dataset, min_support):
+def apriori(dataset, itemset, min_support):
     """
     :param dataset: The dataset specified by user.
+    :param itemset: The itemset to look at
     :param min_support: The min support specified by user.
     :return:
     """
-    first_set = create_first_set(dataset)
-    frequency = calc_set_frequency(dataset, first_set)
-    pruned_sets = pruning(first_set, frequency, min_support)
+    frequency = calc_set_frequency(dataset, itemset)
+    pruned_sets = pruning(itemset, frequency, min_support)
 
     if len(pruned_sets) <= 1:
         return []
