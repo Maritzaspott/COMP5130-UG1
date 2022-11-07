@@ -9,7 +9,7 @@ def main():
     #error checking for these inputs?
     dataset = create_dataset(input("Please enter the data path: "))
     min_support = input("Please specify a minimum support: ")
-    print("The most frequent itemset is {}".format(apriori(dataset, min_support)))
+    print("The most frequent itemset is {}".format(apriori(dataset, int(min_support))))
     #confidence_level = input("Please specify a confidence level: ")
     #print("The most frequent itemset contains the following strong associations{}".format(confidence_level))
 
