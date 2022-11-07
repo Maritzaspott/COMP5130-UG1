@@ -13,7 +13,7 @@ def apriori(dataset, itemset, min_support):
     frequency = calc_set_frequency(dataset, itemset)
     pruned_sets = pruning(itemset, frequency, min_support)
 
-    if len(pruned_sets) <= 1:
+    if len(pruned_sets) < 1:
         return []
 
     next_set = create_next_set(pruned_sets)
