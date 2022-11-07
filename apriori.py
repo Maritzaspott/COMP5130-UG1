@@ -6,9 +6,9 @@ from utils import *
 def apriori(dataset, itemset, min_support):
     """
     :param dataset: The dataset specified by user.
-    :param itemset: The itemset to look at
+    :param itemset: The itemset to look at.
     :param min_support: The min support specified by user.
-    :return:
+    :return: A list of most frequent sets.
     """
     frequency = calc_set_frequency(dataset, itemset)
     pruned_sets = pruning(itemset, frequency, min_support)

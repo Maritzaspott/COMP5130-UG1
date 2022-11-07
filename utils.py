@@ -8,6 +8,7 @@
 # return list of individual items
 import csv
 
+
 def create_dataset(file_path):
     """
         :param file_path: a full file directory path to the imported data file used to run the algorithm
@@ -21,6 +22,7 @@ def create_dataset(file_path):
             dataset.append(set(items))
     return dataset
 
+
 def create_first_set(dataset):
     """
         :param dataset: a dataset of items in a comma separated list
@@ -32,6 +34,7 @@ def create_first_set(dataset):
             first_set.add(item)
     itemsets = [{item} for item in list(first_set)]
     return itemsets
+
 
 # calculate subset frequency from all itemsets
 # piper
@@ -55,13 +58,14 @@ def calc_set_frequency(dataset, itemsets):
                 frequency[index] += 1
     return frequency
 
+
 # prune
 # zelda
 # L(k+1) = candidates in C(k+1) with min support
 # return list of itemsets
 
 def pruning(itemsets, frequency, min_support):
-    for index in range(len(itemsets)-1, -1, -1):
+    for index in range(len(itemsets) - 1, -1, -1):
         if frequency[index] < min_support:
             itemsets.pop(index)
             frequency.pop(index)
@@ -85,4 +89,3 @@ def create_next_set(pruned_itemsets):
                 if new_itemset not in dataset:
                     dataset.append(new_itemset)
     return dataset
-
