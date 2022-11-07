@@ -68,8 +68,29 @@ def calc_set_frequency(dataset, itemsets):
 # L(k+1) = candidates in C(k+1) with min support
 # return list of itemsets
 
+def pruning(itemsets, frequency, min_support):
+    for index in range(len(itemsets)-1, -1, -1):
+        if frequency[index] < min_support:
+            itemsets.pop(index)
+            frequency.pop(index)
+    return itemsets
+
+
 # create itemsets after pruning
 # zelda
 # for (k = 1; Lk != emptyset; k++) do begin
 #       C(k+1) = candidates generated from Lk
 # returns list of itemsets
+
+def create_next_set(pruned_itemsets):
+    dataset = []
+    for x, itemset1 in enumerate(pruned_itemsets):
+        for y, itemset2 in enumerate(pruned_itemsets):
+            if y <= x:
+                continue
+            if len(itemset1.difference(itemset2)) == 1:
+                new_itemset = itemset1.union(itemset2)
+                if new_itemset not in dataset:
+                    dataset.append(new_itemset)
+    return dataset
+
