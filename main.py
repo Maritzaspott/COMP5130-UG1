@@ -5,14 +5,16 @@
 # Can also ask for a confidence level and return the strong associations from the most frequent itemset
 from utils import *
 from apriori import apriori
+from associations import find_strong_association_rules
 def main():
     #error checking for these inputs?
     dataset = create_dataset(input("Please enter the data path: "))
     first_set = create_first_set(dataset)
     min_support = int(input("Please specify a minimum support: "))
-    results = apriori(dataset, first_set, min_support)
-    print("The most frequent itemset is {}".format(results[-1]))
-    #confidence_level = input("Please specify a confidence level: ")
-    #print("The most frequent itemset contains the following strong associations{}".format(confidence_level))
+    apriori_results = apriori(dataset, first_set, min_support)
+    print("The most frequent itemset is {}".format(apriori_results[-1]))
+    confidence_level = input("Please specify a confidence level (as a percentage): ")
+    associations_results = find_strong_association_rules(apriori_results[-1], confidence_level, dataset)
+    print("The most frequent itemset contains the following strong associations{}".format(associations_results))
 
 main()
