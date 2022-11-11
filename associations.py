@@ -25,8 +25,8 @@ def find_strong_association_rules(frequent_itemsets: list[list], confidence_leve
         for index in range(len(frequencies)):
             confidence = (AuB / frequencies[index]) * 100
             if confidence > float(confidence_level):
-                itemset -= combinations[index]
-                key = "{} -> {}".format(combinations[index], itemset)
+                difference = (itemset - combinations[index])
+                key = "{} -> {}".format(combinations[index], difference)
                 strong_rules[key] = confidence
 
     return strong_rules
