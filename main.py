@@ -5,6 +5,7 @@
 # Can also ask for a confidence level and return the strong associations from the most frequent itemset
 from utils import *
 import time
+from pprint import pprint
 from apriori import apriori
 from associations import find_strong_association_rules
 def main():
@@ -18,14 +19,16 @@ def main():
 
     confidence_level = input("Please specify a confidence level (as a percentage): ")
     associations_results = find_strong_association_rules(apriori_results[-1], confidence_level, dataset)
-    print("The most frequent itemset contains the following strong associations{}".format(associations_results))
+    print("The most frequent itemset contains the following strong associations: ")
+    pprint(associations_results)
 
     # efficiency testing
+    NUM_RUNS = 100
     start = time.time()
-    for index in range(1000):
+    for index in range(NUM_RUNS):
         apriori(dataset, first_set, min_support)
     end = time.time()
 
-    print("For the configured settings, execution time averaged over 1000 runs is:",
-          (end - start), "ms")
+    print("For the configured settings, execution time averaged over {} runs is:".format(NUM_RUNS),
+          float((end - start) / NUM_RUNS), "seconds")
 main()
