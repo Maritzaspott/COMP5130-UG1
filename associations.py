@@ -1,11 +1,11 @@
 # generate associations
 # return ones with confidence level above the one inputted by user
 # maritza
-from more_itertools import set_partitions
+from more_itertools import powerset
 from utils import calc_set_frequency
 
 
-def find_strong_association_rules(frequent_itemset: list[list], confidence_level: float, dataset: list) -> dict:
+def find_strong_association_rules(frequent_itemsets: list[list], confidence_level: float, dataset: list) -> dict:
     """
     :param dataset: the entire dataset
     :param frequent_itemset: a list of items that make up a frequent itemset, defined by apriori
@@ -14,17 +14,20 @@ def find_strong_association_rules(frequent_itemset: list[list], confidence_level
     """
 
     strong_rules = dict()
-    for f in frequent_itemset:
-        partitions = list(set_partitions(f, 2))
-        for p in partitions:
-            # confidence A -> B = P(B|A) = P(A and B) / P(A)
-            A = set(p[0])
-            B = set(p[1])
-            itemsets = (A, (A.union(B)))
-            frequencies = calc_set_frequency(dataset, itemsets)
-            confidence = (frequencies[0] / frequencies[1]) * 100
+    for itemset in frequent_itemsets:
+        itemset_list = list()
+        itemset_list.append(itemset)
+        AuB = (calc_set_frequency(dataset, itemset_list))[0]
+        combinations = list(powerset(itemset))[1:-1] #list of lists
+        for index in range(len(combinations)):
+            combinations[index] = set(combinations[index])
+        frequencies = calc_set_frequency(dataset, combinations)
+        for index in range(len(frequencies)):
+            confidence = (AuB / frequencies[index]) * 100
             if confidence > float(confidence_level):
-                strong_rules[str(p)] = confidence
+                itemset -= combinations[index]
+                key = "{} -> {}".format(combinations[index], itemset)
+                strong_rules[key] = confidence
 
     return strong_rules
 
