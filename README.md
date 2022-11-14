@@ -15,3 +15,9 @@
 - Strong associations are determined by the minimum confidence.
   - The confidence of `A -> B` is determined by: `P(A and B) / P(A)` which is equivalent to saying the support count of A and B over the support count of A. 
   - The confidence describes the probability of A given B: `P(A|B)`.
+
+
+# How to run this code
+- Run the main file and input the information requested from each prompt.
+- The three data files are located within this repository.
+- The configs used in our experiments are located in the presentation file.
